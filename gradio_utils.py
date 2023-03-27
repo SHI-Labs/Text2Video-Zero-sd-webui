@@ -5,30 +5,30 @@ def edge_path_to_video_path(edge_path):
 
     vid_name = edge_path.split("/")[-1]
     if vid_name == "butterfly.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/butterfly.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui-stable-diffusion-webui/__assets__/canny_videos_mp4/butterfly.mp4"
     elif vid_name == "deer.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/deer.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/deer.mp4"
     elif vid_name == "fox.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/fox.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/fox.mp4"
     elif vid_name == "girl_dancing.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/girl_dancing.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/girl_dancing.mp4"
     elif vid_name == "girl_turning.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/girl_turning.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/girl_turning.mp4"
     elif vid_name == "halloween.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/halloween.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/halloween.mp4"
     elif vid_name == "santa.mp4":
-        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/canny_videos_mp4/santa.mp4"
+        video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_mp4/santa.mp4"
     return video_path
 
 
 # App Pose utils
 def motion_to_video_path(motion):
     videos = [
-        f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/poses_skeleton_gifs/dance1_corr.mp4",
-        f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/poses_skeleton_gifs/dance2_corr.mp4",
-        f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/poses_skeleton_gifs/dance3_corr.mp4",
-        f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/poses_skeleton_gifs/dance4_corr.mp4",
-        f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/poses_skeleton_gifs/dance5_corr.mp4"
+        f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/poses_skeleton_gifs/dance1_corr.mp4",
+        f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/poses_skeleton_gifs/dance2_corr.mp4",
+        f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/poses_skeleton_gifs/dance3_corr.mp4",
+        f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/poses_skeleton_gifs/dance4_corr.mp4",
+        f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/poses_skeleton_gifs/dance5_corr.mp4"
     ]
     id = int(motion.split(" ")[1]) - 1
     return videos[id]
@@ -37,16 +37,16 @@ def motion_to_video_path(motion):
 # App Canny Dreambooth utils
 def get_video_from_canny_selection(canny_selection):
     if canny_selection == "woman1":
-        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/db_files/woman1.mp4"
+        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/db_files/woman1.mp4"
 
     elif canny_selection == "woman2":
-        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/db_files/woman2.mp4"
+        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/db_files/woman2.mp4"
 
     elif canny_selection == "man1":
-        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/db_files/man1.mp4"
+        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/db_files/man1.mp4"
 
     elif canny_selection == "woman3":
-        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero/__assets__/db_files/woman3.mp4"
+        input_video_path = f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/db_files/woman3.mp4"
     else:
         raise Exception
 

@@ -11,7 +11,7 @@ except:
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 if debug:
     print(f"Base dir (auto1111) is: {base_dir} from {__file__}")
-ext_dir = os.path.join(base_dir, 'extensions', 'Text2Video-Zero')
+ext_dir = os.path.join(base_dir, 'extensions', 'Text2Video-Zero-stable-diffusion-webui')
 
 if ext_dir not in sys.path:
     if debug:
