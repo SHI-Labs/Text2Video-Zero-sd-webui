@@ -5,10 +5,10 @@ import os
 
 def create_demo(model: Model):
     examples = [
-        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-stable-diffusion-webui', '__assets__/pix2pix video/camel.mp4'), 'make it Van Gogh Starry Night style'],
-        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-stable-diffusion-webui','__assets__/pix2pix video/mini-cooper.mp4'), 'make it Picasso style'],
-        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-stable-diffusion-webui','__assets__/pix2pix video/snowboard.mp4'), 'replace man with robot'],
-        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-stable-diffusion-webui','__assets__/pix2pix video/white-swan.mp4'), 'replace swan with mallard'],
+        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-sd-webui', '__assets__/pix2pix video/camel.mp4'), 'make it Van Gogh Starry Night style'],
+        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/mini-cooper.mp4'), 'make it Picasso style'],
+        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/snowboard.mp4'), 'replace man with robot'],
+        [os.path.join(scripts.basedir(),'extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/white-swan.mp4'), 'replace swan with mallard'],
     ]
     with gr.Blocks() as demo:
         with gr.Row():

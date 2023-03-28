@@ -5,13 +5,13 @@ from modules import scripts
 def create_demo(model: Model):
 
     examples = [
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/butterfly.mp4", "white butterfly, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/deer.mp4", "oil painting of a deer, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/fox.mp4", "wild red fox is walking on the grass, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/girl_dancing.mp4", "oil painting of a girl dancing close-up, masterpiece, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/girl_turning.mp4", "oil painting of a beautiful girl, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/halloween.mp4", "beautiful girl halloween style, a high-quality, detailed, and professional photo"],
-        [f"{scripts.basedir()}/extensions/Text2Video-Zero-stable-diffusion-webui/__assets__/canny_videos_edge/santa.mp4", "a santa claus, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/butterfly.mp4", "white butterfly, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/deer.mp4", "oil painting of a deer, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/fox.mp4", "wild red fox is walking on the grass, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/girl_dancing.mp4", "oil painting of a girl dancing close-up, masterpiece, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/girl_turning.mp4", "oil painting of a beautiful girl, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/halloween.mp4", "beautiful girl halloween style, a high-quality, detailed, and professional photo"],
+        [f"{scripts.basedir()}/extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_edge/santa.mp4", "a santa claus, a high-quality, detailed, and professional photo"],
     ]
 
     with gr.Blocks() as demo:
