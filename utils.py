@@ -18,7 +18,7 @@ from modules import scripts
 apply_canny = CannyDetector()
 apply_openpose = OpenposeDetector()
 
-def add_watermark(image, im_size_h, im_size_w, watermark_path=os.path.join(scripts.basedir(), "__assets__/picsart_watermark.jpg"),
+def add_watermark(image, im_size_h, im_size_w, watermark_path=os.path.join("extensions/Text2Video-Zero-sd-webui", "__assets__/picsart_watermark.jpg"),
                   wmsize=16, bbuf=5, opacity=0.9):
     '''
     Creates a watermark on the saved inference image.

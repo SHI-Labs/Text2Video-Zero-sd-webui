@@ -14,10 +14,21 @@ model = Model(device='cuda', dtype=torch.float16)
 
 def on_ui_tabs():
     with gr.Blocks(css='style.css') as text2video_zero_interface:
+        with gr.Tab('Zero-Shot Text2Video'):
+            create_demo_text_to_video(model)
+        with gr.Tab('Video Instruct Pix2Pix'):
+            create_demo_pix2pix_video(model)
+        with gr.Tab('Pose Conditional'):
+            create_demo_pose(model)
+        with gr.Tab('Edge Conditional'):
+            create_demo_canny(model)
+        with gr.Tab('Edge Conditional and Dreambooth Specialized'):
+            create_demo_canny_db(model)
+
         gr.HTML(
             """
             <div style="text-align: center; max-width: 1200px; margin: 20px auto;">
-            <h1 style="font-weight: 900; font-size: 3rem; margin: 0rem">
+            <h1 style="font-weight: 650; font-size: 1.25rem; margin: 0rem">
                 Text2Video-Zero
             </h1>
             <h2 style="font-weight: 450; font-size: 1rem; margin: 0rem">
@@ -38,26 +49,6 @@ def on_ui_tabs():
             </h2>
             </div>
             """)
-
-        
-        gr.HTML("""
-        <p>For faster inference without waiting in queue, you may duplicate the space and upgrade to GPU in settings.
-        <br/>
-        <a href="https://huggingface.co/spaces/PAIR/Text2Video-Zero?duplicate=true">
-        <img style="margin-top: 0em; margin-bottom: 0em" src="https://bit.ly/3gLdBN6" alt="Duplicate Space"></a>
-        </p>""")
-
-        with gr.Tab('Zero-Shot Text2Video'):
-            create_demo_text_to_video(model)
-        with gr.Tab('Video Instruct Pix2Pix'):
-            create_demo_pix2pix_video(model)
-        with gr.Tab('Pose Conditional'):
-            create_demo_pose(model)
-        with gr.Tab('Edge Conditional'):
-            create_demo_canny(model)
-        with gr.Tab('Edge Conditional and Dreambooth Specialized'):
-            create_demo_canny_db(model)
-
         gr.HTML(
             """
             <div style="text-align: justify; max-width: 1200px; margin: 20px auto;">
@@ -78,5 +69,5 @@ def on_ui_tabs():
             </h3>
             </div>
             """)
-    return ((text2video_zero_interface, "Text2Video Zero", "text2video_zero_interface"),)
+    return ((text2video_zero_interface, "Text2Video-Zero", "text2video_zero_interface"),)
 script_callbacks.on_ui_tabs(on_ui_tabs)
