@@ -1,14 +1,15 @@
 import gradio as gr
 from model import Model
-from modules import scripts
-import os
+
 
 def create_demo(model: Model):
     examples = [
-        [os.path.join('extensions/Text2Video-Zero-sd-webui', '__assets__/pix2pix video/camel.mp4'), 'make it Van Gogh Starry Night style'],
-        [os.path.join('extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/mini-cooper.mp4'), 'make it Picasso style'],
-        [os.path.join('extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/snowboard.mp4'), 'replace man with robot'],
-        [os.path.join('extensions/Text2Video-Zero-sd-webui','__assets__/pix2pix video/white-swan.mp4'), 'replace swan with mallard'],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/camel.mp4', 'make it Van Gogh Starry Night style', 512, 0, 1.0],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/mini-cooper.mp4', 'make it Picasso style', 512, 0, 1.5],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/snowboard.mp4', 'replace man with robot', 512, 0, 1.0],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/white-swan.mp4', 'replace swan with mallard', 512, 0, 1.5],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/boat.mp4', 'add city skyline in the background', 512, 0, 1.5],
+        ['extensions/Text2Video-Zero-sd-webui/__assets__/pix2pix_video_2fps/ballet.mp4', 'make her a golden sculpture', 512, 0, 1.0],
     ]
     with gr.Blocks() as demo:
         with gr.Row():
@@ -30,6 +31,7 @@ def create_demo(model: Model):
                 prompt = gr.Textbox(label='Prompt')
                 run_button = gr.Button(label='Run')
                 with gr.Accordion('Advanced options', open=False):
+                    watermark = gr.Radio(["Picsart AI Research", "Text2Video-Zero", "None"], label="Watermark", value='Picsart AI Research')
                     image_resolution = gr.Slider(label='Image Resolution',
                                                  minimum=256,
                                                  maximum=1024,
@@ -40,31 +42,40 @@ def create_demo(model: Model):
                                      maximum=65536,
                                      value=0,
                                      step=1)
+                    image_guidance = gr.Slider(label='Image guidance scale',
+                                     minimum=0.5,
+                                     maximum=2,
+                                     value=1.0,
+                                     step=0.1)
                     start_t = gr.Slider(label='Starting time in seconds',
                                         minimum=0,
-                                        maximum=10,
+                                        maximum=15,
                                         value=0,
                                         step=1)
-                    end_t = gr.Slider(label='End time in seconds',
+                    end_t = gr.Slider(label='End time in seconds (-1 corresponds to uploaded video duration)',
                                       minimum=0,
                                       maximum=15,
+                                      value=-1,
                                       step=1)
-                    out_fps = gr.Slider(label='Output video fps',
+                    out_fps = gr.Slider(label='Output video fps (-1 corresponds to uploaded video fps)',
                                         minimum=1,
                                         maximum=30,
                                         value=-1,
                                         step=1)
+                    chunk_size = gr.Slider(label="Chunk size", minimum=2, maximum=8, value=8, step=1)
             with gr.Column():
-                result = gr.Video(label='Output',
-                                    show_label=True)
+                result = gr.Video(label='Output', show_label=True)
         inputs = [
             input_image,
             prompt,
             image_resolution,
             seed,
+            image_guidance,
             start_t,
             end_t,
-            out_fps
+            out_fps,
+            chunk_size,
+            watermark
         ]
 
         gr.Examples(examples=examples,

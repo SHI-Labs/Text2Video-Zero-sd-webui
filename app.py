@@ -79,5 +79,5 @@ with gr.Blocks(css='style.css') as demo:
         """)
 
 demo.queue(max_size=20)
-demo.launch(debug=True, server_name="0.0.0.0", server_port=7461)
+demo.launch(debug=True)
 # demo.queue(api_open=False).launch(file_directories=['temporal'], share=True)

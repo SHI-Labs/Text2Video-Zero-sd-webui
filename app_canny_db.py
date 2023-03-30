@@ -1,7 +1,6 @@
 import gradio as gr
 from model import Model
 import gradio_utils
-from modules import scripts
 
 examples = [
     ['Anime DB', "woman1", "Portrait of detailed 1girl, feminine, soldier cinematic shot on canon 5d ultra realistic skin intricate clothes accurate hands Rory Lewis Artgerm WLOP Jeremy Lipking Jane Ansell studio lighting"],
@@ -39,11 +38,15 @@ def create_demo(model: Model):
 
         with gr.Row():
             with gr.Column():
+                # input_video_path = gr.Video(source='upload', format="mp4", visible=False)
                 gr.Markdown("## Selection")
                 db_text_field = gr.Markdown('DB Model: **Anime DB** ')
                 canny_text_field = gr.Markdown('Motion: **woman1**')
                 prompt = gr.Textbox(label='Prompt')
                 run_button = gr.Button(label='Run')
+                with gr.Accordion('Advanced options', open=False):
+                    watermark = gr.Radio(["Picsart AI Research", "Text2Video-Zero", "None"], label="Watermark", value='Picsart AI Research')
+                    chunk_size = gr.Slider(label="Chunk size", minimum=2, maximum=8, value=8, step=1)
             with gr.Column():
                 result = gr.Image(label="Generated Video").style(height=400)
 
@@ -66,6 +69,8 @@ def create_demo(model: Model):
             db_selection,
             canny_selection,
             prompt,
+            chunk_size,
+            watermark,
         ]
 
         gr.Examples(examples=examples,
