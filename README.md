@@ -6,7 +6,7 @@
 - may need to add `--disable-safe-unpickle` to `bash webui.sh` when launch
 
 ## Issues
-- To diable caching examples everytime webui launching
+- To disable caching examples everytime webui launching
   - Within the directory `/path/to/stable-diffusion-webui/extensions/Text2Video-Zero-sd-webui`, use your favorite code editor search for `cache_examples` in codes and set them to False
   
  <img src="images/cache-example.png" alt="cache-example" width="30%">
