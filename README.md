@@ -8,4 +8,5 @@
 ## Issues
 - To diable caching examples everytime webui launching
   - Within the directory `/path/to/stable-diffusion-webui/extensions/Text2Video-Zero-sd-webui`, use your favorite code editor search for `cache_examples` in codes and set them to False
-![cache-example](images/cache-example.png)
+  
+ <img src="images/cache-example.png" alt="cache-example" width="30%">
