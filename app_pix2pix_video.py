@@ -82,7 +82,7 @@ def create_demo(model: Model):
                     inputs=inputs,
                     outputs=result,
                     fn=model.process_pix2pix,
-                    cache_examples=True,
+                    cache_examples=False,
                     run_on_click=False,
                     )
 

@@ -50,7 +50,7 @@ def create_demo(model: Model):
                     inputs=inputs,
                     outputs=result,
                     fn=model.process_controlnet_canny,
-                    cache_examples = True,
+                    cache_examples = False,
                     run_on_click=False,
                     )
 

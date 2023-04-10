@@ -77,7 +77,7 @@ def create_demo(model: Model):
                     inputs=inputs,
                     outputs=result,
                     fn=model.process_controlnet_canny_db,
-                    cache_examples = True,
+                    cache_examples = False,
                     )
 
         run_button.click(fn=model.process_controlnet_canny_db,
