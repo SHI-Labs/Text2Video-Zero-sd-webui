@@ -9,4 +9,4 @@
 - [4/10/2023] 
   - Updated to original repo `2e1b115`
   - Disabled example caching
-  - Updated denpendences, after automatic installation, it should work on Linux environment.
+  - Updated denpendences, after automatic installation, it should work on Linux environment. For example, issues such as "can't import decord" and no tab showing are due to erroneous dependency installation. 
