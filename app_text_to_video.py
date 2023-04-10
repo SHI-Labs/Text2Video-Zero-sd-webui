@@ -46,7 +46,7 @@ best_model_list = [
     "prompthero/openjourney",
 ]
 
-model_list = best_model_list + model_list
+model_list = best_model_list + []
 
 
 def create_demo(model: Model):
