@@ -9,4 +9,4 @@
 - [4/10/2023] 
   - Updated to original repo `2e1b115`
   - Disabled example caching
-  - Updated denpendences, it should work on both Linux and Windows environments.
+  - Updated denpendences, after automatic installation, it should work on both Linux environments.
