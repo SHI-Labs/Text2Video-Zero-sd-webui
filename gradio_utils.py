@@ -1,25 +1,32 @@
+import os
+
 # App Canny utils
+
+
 def edge_path_to_video_path(edge_path):
     video_path = edge_path
 
     vid_name = edge_path.split("/")[-1]
     if vid_name == "butterfly.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/butterfly.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/butterfly.mp4"
     elif vid_name == "deer.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/deer.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/deer.mp4"
     elif vid_name == "fox.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/fox.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/fox.mp4"
     elif vid_name == "girl_dancing.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/girl_dancing.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/girl_dancing.mp4"
     elif vid_name == "girl_turning.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/girl_turning.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/girl_turning.mp4"
     elif vid_name == "halloween.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/halloween.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/halloween.mp4"
     elif vid_name == "santa.mp4":
-        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4_2fps/santa.mp4"
+        video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/canny_videos_mp4/santa.mp4"
+
+    assert os.path.isfile(video_path)
     return video_path
 
 
+# App Pose utils
 def motion_to_video_path(motion):
     videos = [
         "extensions/Text2Video-Zero-sd-webui/__assets__/poses_skeleton_gifs/dance1_corr.mp4",
@@ -49,22 +56,24 @@ def get_video_from_canny_selection(canny_selection):
     elif canny_selection == "woman3":
         input_video_path = "extensions/Text2Video-Zero-sd-webui/__assets__/db_files_2fps/woman3.mp4"
     else:
-        raise Exception
+        input_video_path = canny_selection
 
+    assert os.path.isfile(input_video_path)
     return input_video_path
 
 
 def get_model_from_db_selection(db_selection):
     if db_selection == "Anime DB":
-        input_video_path = 'PAIR/controlnet-canny-anime'
+        input_video_path = 'PAIR/text2video-zero-controlnet-canny-anime'
     elif db_selection == "Avatar DB":
-        input_video_path = 'PAIR/controlnet-canny-avatar'
+        input_video_path = 'PAIR/text2video-zero-controlnet-canny-avatar'
     elif db_selection == "GTA-5 DB":
-        input_video_path = 'PAIR/controlnet-canny-gta5'
+        input_video_path = 'PAIR/text2video-zero-controlnet-canny-gta5'
     elif db_selection == "Arcane DB":
-        input_video_path = 'PAIR/controlnet-canny-arcane'
+        input_video_path = 'PAIR/text2video-zero-controlnet-canny-arcane'
     else:
-        raise Exception
+        input_video_path = db_selection
+
     return input_video_path
 
 

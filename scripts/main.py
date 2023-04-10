@@ -9,6 +9,7 @@ from app_pose import create_demo as create_demo_pose
 from app_text_to_video import create_demo as create_demo_text_to_video
 from app_pix2pix_video import create_demo as create_demo_pix2pix_video
 from app_canny_db import create_demo as create_demo_canny_db
+from app_depth import create_demo as create_demo_depth
 
 model = Model(device='cuda', dtype=torch.float16)
 
@@ -24,12 +25,15 @@ def on_ui_tabs():
             create_demo_canny(model)
         with gr.Tab('Edge Conditional and Dreambooth Specialized'):
             create_demo_canny_db(model)
-
+        with gr.Tab('Depth Conditional'):
+            create_demo_depth(model)
+        '''
+        '''
         gr.HTML(
             """
             <div style="text-align: center; max-width: 1200px; margin: 20px auto;">
-            <h1 style="font-weight: 650; font-size: 1.25rem; margin: 0rem">
-                Text2Video-Zero
+            <h1 style="font-weight: 900; font-size: 3rem; margin: 0rem">
+                <a href="https://github.com/Picsart-AI-Research/Text2Video-Zero" style="color:blue;">Text2Video-Zero</a> 
             </h1>
             <h2 style="font-weight: 450; font-size: 1rem; margin: 0rem">
             Levon Khachatryan<sup>1*</sup>, Andranik Movsisyan<sup>1*</sup>, Vahram Tadevosyan<sup>1*</sup>, Roberto Henschel<sup>1*</sup>, Zhangyang Wang<sup>1,2</sup>, Shant Navasardyan<sup>1</sup>
@@ -48,7 +52,7 @@ def on_ui_tabs():
             We hope our Text2Video-Zero will further democratize AI and empower the creativity of everyone by unleashing the zero-shot video generation and editing capacity of the amazing text-to-image models and encourage future research!
             </h2>
             </div>
-            """)
+            """)    
         gr.HTML(
             """
             <div style="text-align: justify; max-width: 1200px; margin: 20px auto;">

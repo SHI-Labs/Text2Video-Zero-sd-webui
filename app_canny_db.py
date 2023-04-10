@@ -1,6 +1,9 @@
 import gradio as gr
 from model import Model
 import gradio_utils
+import os
+on_huggingspace = os.environ.get("SPACE_AUTHOR_NAME") == "PAIR"
+
 
 examples = [
     ['Anime DB', "woman1", "Portrait of detailed 1girl, feminine, soldier cinematic shot on canon 5d ultra realistic skin intricate clothes accurate hands Rory Lewis Artgerm WLOP Jeremy Lipking Jane Ansell studio lighting"],
@@ -25,7 +28,8 @@ def create_demo(model: Model):
 
     with gr.Blocks() as demo:
         with gr.Row():
-            gr.Markdown('## Text, Canny-Edge and DreamBooth Conditional Video Generation')
+            gr.Markdown(
+                '## Text, Canny-Edge and DreamBooth Conditional Video Generation')
         with gr.Row():
             gr.HTML(
                 """
@@ -35,7 +39,6 @@ def create_demo(model: Model):
                 </h3>
                 </div>
                 """)
-
         with gr.Row():
             with gr.Column():
                 # input_video_path = gr.Video(source='upload', format="mp4", visible=False)
@@ -45,25 +48,34 @@ def create_demo(model: Model):
                 prompt = gr.Textbox(label='Prompt')
                 run_button = gr.Button(label='Run')
                 with gr.Accordion('Advanced options', open=False):
-                    watermark = gr.Radio(["Picsart AI Research", "Text2Video-Zero", "None"], label="Watermark", value='Picsart AI Research')
-                    chunk_size = gr.Slider(label="Chunk size", minimum=2, maximum=8, value=8, step=1)
+                    watermark = gr.Radio(["Picsart AI Research", "Text2Video-Zero",
+                                         "None"], label="Watermark", value='Picsart AI Research')
+                    chunk_size = gr.Slider(
+                        label="Chunk size", minimum=2, maximum=16, value=8, step=1, visible=not on_huggingspace,
+                        info="Number of frames processed at once. Reduce for lower memory usage.")
+                    merging_ratio = gr.Slider(
+                        label="Merging ratio", minimum=0.0, maximum=0.9, step=0.1, value=0.0, visible=not on_huggingspace,
+                        info="Ratio of how many tokens are merged. The higher the more compression (less memory and faster inference).")
             with gr.Column():
                 result = gr.Image(label="Generated Video").style(height=400)
 
         with gr.Row():
-            gallery_db = gr.Gallery(label="Db models", value=[('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/anime.jpg', "anime"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/arcane.jpg', "Arcane"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/gta.jpg', "GTA-5 (Man)"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/avatar.jpg', "Avatar DB")]).style(grid=[4], height=50)
+            gallery_db = gr.Gallery(label="Db models", value=[('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/anime.jpg', "anime"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/arcane.jpg', "Arcane"), (
+                'extensions/Text2Video-Zero-sd-webui/__assets__/db_files/gta.jpg', "GTA-5 (Man)"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/avatar.jpg', "Avatar DB")]).style(grid=[4], height=50)
         with gr.Row():
-            gallery_canny = gr.Gallery(label="Motions", value=[('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman1.gif', "woman1"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman2.gif', "woman2"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/man1.gif', "man1"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman3.gif', "woman3")]).style(grid=[4], height=50)
-            predefined_motion = gr.Textbox(visible=False, label='One of the above defined motions')
+            gallery_canny = gr.Gallery(label="Motions", value=[('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman1.gif', "woman1"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman2.gif', "woman2"), (
+                'extensions/Text2Video-Zero-sd-webui/__assets__/db_files/man1.gif', "man1"), ('extensions/Text2Video-Zero-sd-webui/__assets__/db_files/woman3.gif', "woman3")]).style(grid=[4], height=50)
 
         db_selection = gr.Textbox(label="DB Model", visible=False)
-        canny_selection = gr.Textbox(label="One of the above defined motions", visible=False)
+        canny_selection = gr.Textbox(
+            label="One of the above defined motions", visible=False)
 
         gallery_db.select(load_db_model, None, db_selection)
         gallery_canny.select(canny_select, None, canny_selection)
 
-        db_selection.change(on_db_selection_update,None,db_text_field)
-        canny_selection.change(on_canny_selection_update,None,canny_text_field)
+        db_selection.change(on_db_selection_update, None, db_text_field)
+        canny_selection.change(on_canny_selection_update,
+                               None, canny_text_field)
 
         inputs = [
             db_selection,
@@ -71,13 +83,14 @@ def create_demo(model: Model):
             prompt,
             chunk_size,
             watermark,
+            merging_ratio,
         ]
 
         gr.Examples(examples=examples,
                     inputs=inputs,
                     outputs=result,
                     fn=model.process_controlnet_canny_db,
-                    cache_examples = False,
+                    cache_examples=on_huggingspace,
                     )
 
         run_button.click(fn=model.process_controlnet_canny_db,
@@ -86,7 +99,7 @@ def create_demo(model: Model):
     return demo
 
 
-def on_db_selection_update(evt : gr.EventData):
+def on_db_selection_update(evt: gr.EventData):
 
     return f"DB model: **{evt._data}**"
 
